@@ -1,1 +1,98 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ShaderToy to Unity Shader Converter</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css" integrity="sha512-UJ1deacBdW3glDLpi0YblrcyhXwjpsezSoWrmjqIB6xnqb6i8w7PXXIMiFSd+hE0zzzYJ5deQkkkTbqxCE99sg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/eclipse.min.css" integrity="sha512-501igOtZyUfEI+uS+RP6etVG/CVKFeTzwyQciuKvHC+jfece5FPA/S9GL5s2GISAb/sf6N+9O+uwZQzQ0XR4Xw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  display: flex;
+  height: 100vh;
+  margin: 0;
+  background: #f5f5f5;
+  color: #333;
+}
+
+.CodeMirror {
+  flex: 1;
+  height: calc(100% - 40px);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: white;
+}
+
+#left, #right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+#controls {
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  border-left: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e0e0;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
+  padding: 20px;
+}
+
+select {
+  margin-top: 5px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+  color: #333;
+}
+
+button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  border: none;
+  background: #0078d4;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #005a9e;
+}
+
+h3 {
+  margin: 0 0 10px 0;
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+<div id="left">
+  <h3>ShaderToy Script</h3>
+  <textarea id="input" placeholder="Paste ShaderToy code here..."></textarea>
+</div>
+<div id="controls">
+  <label for="target">Target:</label>
+  <select id="target">
+    <option value="urp">Unity URP</option>
+    <option value="srp">Legacy SRP</option>
+  </select>
+  <button onclick="convertShader()">Convert</button>
+</div>
+<div id="right">
+  <h3>Unity Shader</h3>
+  <textarea id="output" readonly></textarea>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js" integrity="sha512-X4GgYUZWnbLju5PIAcUSrDN5hwP1cZMAXN/pO3jfvshMDW60dy5oYi9z+dLHgvrDMFPvB9rxpQFQUAEyyqDrMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/clike/clike.min.js" integrity="sha512-0E37QQcI4V3M87uY/rRvhfVqlhK/SXxPxq8np5xpoE2mR7BfrpsbR9f7DmqDveoxu48UUfZo0fo0RKZ77N8INA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="translator.js"></script>
+</body>
+</html>
+
