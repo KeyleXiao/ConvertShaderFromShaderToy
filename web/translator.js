@@ -1,3 +1,4 @@
+
 let inputEditor;
 let outputEditor;
 
@@ -121,3 +122,4 @@ ${indent(body, 8)}
 function indent(text, spaces) {
   return text.split('\n').map(line => ' '.repeat(spaces) + line).join('\n');
 }
+
